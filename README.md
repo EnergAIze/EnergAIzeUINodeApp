@@ -7,9 +7,9 @@ To run both client and server in dev mode , In the project directory, you can ru
 ### `cd server && npm run dev`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000/startups](http://localhost:3000/startups) to view client in the browser.
+Open [http://localhost:3000/power-predict](http://localhost:3000/power-predict) to view client in the browser.
 
-Open [http://localhost:5000/startups](http://localhost:5000/startups) to verify server apis' in the browser / any relevant tools.
+Open [http://localhost:5000/power-predict](http://localhost:5000/power-predict) to verify server apis' in the browser / any relevant tools.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
@@ -33,4 +33,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `cd server && npm start`
 
-App will be served in single port by server . Open [http://localhost:5000/startups](http://localhost:5000/startups) to load the app. 
+App will be served in single port by server . Open [http://localhost:5000/power-predict](http://localhost:5000/power-predict) to load the app. 

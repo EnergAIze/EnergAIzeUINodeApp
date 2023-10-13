@@ -11,10 +11,6 @@
     "build": "cd ./client && npm run build && cd ..",
     "prod": "npm run build && npm run start"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.ibm.com/dwedge/startups.git"
-  },
   "author": "Minal Rivonker",
   "license": "ISC",
   "dependencies": {
