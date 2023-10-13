@@ -1,5 +1,8 @@
 # EnergAIzeUINodeApp
 
+First you need to install node modules in server as well as client folder. Run below command in both folders
+### `npm install`
+
 ## Available Scripts
 
 To run both client and server in dev mode , In the project directory, you can run:
