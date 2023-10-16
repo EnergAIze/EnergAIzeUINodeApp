@@ -10,16 +10,31 @@ for(let i=1;i<=15;i++){
   xLabels.push(`Day ${i} `)
 }
 
+const chartSetting = {
+  yAxis: [
+    {
+      label: 'Watts',
+    },
+  ],
+  sx: {
+    [`.${axisClasses.left} .${axisClasses.label}`]: {
+      transform: 'translate(-10px, 0)',
+    },
+    [`.MuiChartsAxis-bottom .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel.MuiChartsAxis-tickLabel`]: {
+      transform: 'rotate(-19deg)'
+    }
+  },
+};
+
 export default function SimpleBarChart(props) {
   const uData = props.data;
   return !!props.data && (
     <BarChart
-      width={700}
       height={300}
       series={[
-        { data: uData, label: 'Watts', id: 'pvId' },
+        { data: uData, id: 'pvId' },
       ]}
-      xAxis={[{ data: xLabels, scaleType: 'band',categoryGapRatio: 0.8, barGapRatio: 0.5 }]}
+      xAxis={[{ data: xLabels, scaleType: 'band',categoryGapRatio: 0.8, barGapRatio: 0.5}]}
 
       slotProps={{
         legend: {
@@ -33,11 +48,13 @@ export default function SimpleBarChart(props) {
         },
       }}
 
-      sx={{
-        [`.MuiChartsAxis-bottom .MuiChartsAxis-tickLabel.MuiChartsAxis-tickLabel`]: {
-          transform: 'rotate(-19deg)'
-        }
-      }}
+      // sx={{
+      //   [`.MuiChartsAxis-bottom .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel.MuiChartsAxis-tickLabel`]: {
+      //     transform: 'rotate(-19deg)'
+      //   }
+      // }}
+
+      {...chartSetting}
 
     />
   );

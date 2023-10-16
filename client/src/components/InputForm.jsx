@@ -64,30 +64,51 @@ export default function InputForm(props) {
 
   return (
     <Box sx={{ p: 2, marginTop: "4px",borderBottom:"1px solid #DDE5ED",background:"#F6F9FC 0% 0% no-repeat padding-box"}}>
-      <Grid container xs={12}  >
+      <Grid container xs={12} spacing={2} >
         <Grid item xs={2} sx={{textAlign: "left"}}>
           <div><FormLabel >Latitude</FormLabel></div>
+          
+        </Grid>
+        <Grid item xs={2} sx={{textAlign: "left"}}>
+          <div><FormLabel>Longitude</FormLabel></div>
+          
+        </Grid>
+        <Grid item xs={2} sx={{textAlign: "left"}}>
+          <div><FormLabel>Avg Daily Consumption (in Watt)</FormLabel></div>
+          
+        </Grid>        
+        <Grid item xs={2} sx={{textAlign: "left"}}>
+          <div><FormLabel>Available Land Area (In Sq Mt)</FormLabel></div>
+          
+        </Grid>
+        <Grid item xs={2}>
+          <div><FormLabel>&nbsp;</FormLabel></div>
+          
+        </Grid>
+        <Grid item xs={2}>
+          <div>&nbsp;</div>
+        </Grid>
+     </Grid>
+
+     <Grid container xs={12} spacing={2} >
+        <Grid item xs={2} sx={{textAlign: "left"}}>
           <div><TextField size="small" label="Enter Value" variant="filled" value={lat}  
           onChange={(e)=>latChangeHandler(e)}
           sx={{border:"1px solid #B8C5DA",borderRadius:"4px"}}></TextField></div>
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel>Longitude</FormLabel></div>
           <div><TextField size="small" label="Enter Value" variant="filled" value={long}  
           onChange={(e)=>longChangeHandler(e)}></TextField></div>
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel>Avg Daily Consumption (in Watt)</FormLabel></div>
           <div><TextField size="small" label="Enter Value" variant="filled" value={avgConsmptn}
           onChange={(e)=>avgConsmptnChangeHandler(e)}></TextField></div>
         </Grid>        
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel>Available Land Area (In Sq Mt)</FormLabel></div>
           <div><TextField size="small" label="Enter Area" variant="filled" value={landArea}
           onChange={(e)=>landAreaChangeHandler(e)}></TextField></div>
         </Grid>
         <Grid item xs={2}>
-          <div><FormLabel>&nbsp;</FormLabel></div>
           <div><Button variant="contained" fullWidth size="large" onClick={clickHandler} disabled={disabled}>
           Search</Button></div>
         </Grid>
