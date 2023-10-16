@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
+const predictDataMock = require('./mock.json');
 
 // NOTE: you must manually enter your API_KEY below using information retrieved from your IBM Cloud
 const API_KEY = "";
@@ -62,12 +63,16 @@ app.post('/api/predict', (req, res) => {
         }
         //console.log(token)
         apiPost(token, (error, data) => {
+            // TBD return correct response after formatting
             if (error) {
-                return res.send({ error })
+                return res.send(predictDataMock)
+                //return res.send({ error })
             }
-            return res.send(data)
+            return res.send(predictDataMock)
+            //return res.send(data)
         })
     })
+    
 })
 
 

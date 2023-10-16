@@ -1,14 +1,19 @@
-import React from 'react'
+// import {useState,React} from 'react'
+import React,{useState} from 'react'
 // import ReactDOM from 'react-dom'
 // import logo from './logo.svg';
 import './App.css';
 
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import {orange} from '@mui/material/colors';
 import AppHeader from "./components/AppHeader";
 import InputForm from "./components/InputForm";
 import PredictCharts from "./components/PredictCharts";
-
+import Report from "./components/Report";
+import {PredictContext} from "./components/context";
+// import "@fontsource/roboto";
 
 function ColoredComponent({ color }) {
   return (
@@ -28,15 +33,52 @@ function ColoredComponent({ color }) {
 
 
 function App() {
+
+  const [predictData, setPredictData] = React.useState({});
+  console.log(" In App predictData: ",predictData);
+
+  const savePredictData = (data) => {
+
+    console.log('save pred',data)
+    // setPredictData(prevState => ({
+    //   ...prevState,
+    //   ...data
+    // }))
+
+    setPredictData({'solar':[],'wind':[]})
+    // setPredictData(data)
+    console.log(predictData);
+  }
+
+  // Create a theme instance.
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#556cd6',
+      },
+      secondary: {
+        main: '#19857b',
+      },
+      error: {
+        main: orange[500],
+      },
+    },
+  });
+
   return (
     <div className="App">
-      <AppHeader/>
+      <ThemeProvider theme={theme}>
 
-      <InputForm/>
+        <PredictContext.Provider value={{predictData, setPredictData}} >
+          <AppHeader/>
+          
+          <InputForm />
 
-      <PredictCharts />
-      
+          <PredictCharts/>
 
+          <Report/>
+        </PredictContext.Provider>
+      </ThemeProvider>
     </div>
   );
 }

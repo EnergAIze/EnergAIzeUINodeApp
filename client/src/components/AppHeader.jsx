@@ -9,12 +9,14 @@ import IconButton from '@mui/material/IconButton';
 
 export default function AppHeader() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="transparent" >
+    <Box sx={{ flexGrow: 1 , boxShadow: "3px 3px 3px #DDE5ED"}}>
+      <AppBar position="static" color="transparent" sx={{boxShadow: "3px 3px 3px #DDE5ED"}} >
         <Toolbar variant="dense">
-        <Typography variant="h7" sx={{
+        <Typography variant="h5" sx={{
           fontSize: '14px',
           color: '#204464',
+          fontWeight: 'bold',
+          height:'17px'
         }}>
           Power Generation Prediction
         </Typography>
