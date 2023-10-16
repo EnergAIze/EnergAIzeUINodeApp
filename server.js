@@ -59,8 +59,7 @@ app.post('/api/predict', (req, res) => {
 
     getToken((error, token) => {
         if (error) {
-            return res.send(predictDataMock)
-            // return res.send({ error })
+            return res.send({ error })
         }
         //console.log(token)
         apiPost(token, (error, data) => {

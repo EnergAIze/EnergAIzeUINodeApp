@@ -101,15 +101,18 @@ export default function InputForm(props) {
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
           <div><TextField size="small" label="Enter Value" variant="filled" value={long}  
-          onChange={(e)=>longChangeHandler(e)}></TextField></div>
+          onChange={(e)=>longChangeHandler(e)}
+          sx={{border:"1px solid #B8C5DA",borderRadius:"4px"}}></TextField></div>
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
           <div><TextField size="small" label="Enter Value" variant="filled" value={avgConsmptn}
-          onChange={(e)=>avgConsmptnChangeHandler(e)}></TextField></div>
+          onChange={(e)=>avgConsmptnChangeHandler(e)}
+          sx={{border:"1px solid #B8C5DA",borderRadius:"4px"}}></TextField></div>
         </Grid>        
         <Grid item xs={2} sx={{textAlign: "left"}}>
           <div><TextField size="small" label="Enter Area" variant="filled" value={landArea}
-          onChange={(e)=>landAreaChangeHandler(e)}></TextField></div>
+          onChange={(e)=>landAreaChangeHandler(e)}
+          sx={{border:"1px solid #B8C5DA",borderRadius:"4px"}}></TextField></div>
         </Grid>
         <Grid item xs={2}>
           <div><Button variant="contained" fullWidth size="large" onClick={clickHandler} disabled={disabled}>
