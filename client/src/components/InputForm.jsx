@@ -5,6 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 import data from './mock'
 // import { useContext } from 'react';
 import {PredictContext} from "./context";
@@ -15,7 +16,8 @@ export default function InputForm(props) {
 
   const [disabled, setDisabled] =  useState(true);
 
-  
+  const [loader, setLoader] =  useState(false);
+
   const [lat, setLat] = useState();
   const [long, setlong] = useState();
   const [avgConsmptn, setavgConsmptn] = useState('');
@@ -43,7 +45,7 @@ export default function InputForm(props) {
       setDisabled(false);
   },[lat,long,avgConsmptn,landArea])
   const clickHandler = () =>{
-
+    setLoader(true);
     fetch('/api/predict', {
       method: 'POST',
       headers: {
@@ -58,6 +60,7 @@ export default function InputForm(props) {
     then(response => response.json())
     .then(res => {
       setPredictData(res);
+      setLoader(false);
     });
     // setPredictData(res);
   }
@@ -112,8 +115,8 @@ export default function InputForm(props) {
           <div><Button variant="contained" fullWidth size="large" onClick={clickHandler} disabled={disabled}>
           Search</Button></div>
         </Grid>
-        <Grid item xs={2}>
-          <div>&nbsp;</div>
+        <Grid item xs={2} sx={{textAlign:'left'}}>
+          {loader ? <CircularProgress/> :<div> &nbsp; </div> }
         </Grid>
      </Grid>
     </Box>

@@ -56,7 +56,7 @@ export default function Report(props) {
     </Grid>) : '' }
 
 
-    { predictData?.solar ? (<TableContainer style={{marginTop:'25px'}} component={Paper}>
+    { predictData?.solar ? (<TableContainer style={{marginTop:'25px',marginBottom:'25px'}} component={Paper}>
       <Table   aria-label="simple table">
         <TableBody>
           {rows.map((row,index) => (
