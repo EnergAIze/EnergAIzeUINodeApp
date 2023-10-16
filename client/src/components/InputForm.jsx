@@ -12,7 +12,6 @@ import {PredictContext} from "./context";
 export default function InputForm(props) {
 
   const { predictData, setPredictData } = useContext(PredictContext);
-  setPredictData(data);
 
   const [disabled, setDisabled] =  useState(true);
 
