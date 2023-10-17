@@ -69,19 +69,19 @@ export default function InputForm(props) {
     <Box sx={{ p: 2, marginTop: "4px",borderBottom:"1px solid #DDE5ED",background:"#F6F9FC 0% 0% no-repeat padding-box"}}>
       <Grid container xs={12} spacing={2} >
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel >Latitude</FormLabel></div>
+          <div><FormLabel required>Latitude</FormLabel></div>
           
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel>Longitude</FormLabel></div>
+          <div><FormLabel required>Longitude</FormLabel></div>
           
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel>Avg Daily Consumption (in Watt)</FormLabel></div>
+          <div><FormLabel required>Avg Daily Consumption (in Watt)</FormLabel></div>
           
         </Grid>        
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel>Available Land Area (In Sq Mt)</FormLabel></div>
+          <div><FormLabel required>Available Land Area (In Sq Mt)</FormLabel></div>
           
         </Grid>
         <Grid item xs={2}>
