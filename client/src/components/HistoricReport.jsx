@@ -51,23 +51,28 @@ export default function HistoricReport(props) {
 
   let solorValueColor = '#4E4E4E';
   let windValueColor = '#4E4E4E';
-  if( predictData?.historical?.solar_avg >= predictData?.historical?.wind_avg  )
-    solorValueColor = '#4caf50'
-  else 
-    windValueColor = '#4caf50'
+  let solorBorderValueColor = '#DDE5ED';
+  let windBorderValueColor = '#DDE5ED';
+  if( predictData?.historical?.solar_avg >= predictData?.historical?.wind_avg  ){
+    solorValueColor = '#4caf50';
+    solorBorderValueColor = '#4caf50';
+  } else { 
+    windValueColor = '#4caf50';
+    windBorderValueColor = '#4caf50';
+  }
 
-  return !!predictData && (
+  return !!predictData?.historical && (
     <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',textAlign:'left' }}>
     <Grid container xs={12} >
             
     { predictData?.historical?.solar_avg ? (<Grid container xs={6} >
-            <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
+            <Box sx={{ p: 2, borderRadius:'5px', border: `1px solid ${solorBorderValueColor}`,margin:'25px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
             {/* <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Solar
             </Typography> */}
         <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
       Average Historical Solar Power Generation (3 Years)
-      <Tooltip title="Solar power generation prediction based on historical Data for last 3 years">
+      <Tooltip title="Solar power generation prediction based on historical Data for last 3 years" >
         <InfoIcon style={{width:'0.8em',height:'0.8em'}}/>
         </Tooltip>: 
       <strong style={{color:solorValueColor}}> {(predictData?.historical?.solar_avg).toFixed(2)} W</strong>
@@ -77,7 +82,7 @@ export default function HistoricReport(props) {
     </Box></Grid>) : '' }
 
     { predictData?.historical?.wind_avg ? (<Grid container xs={6} >
-      <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px 25px 25px 0px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
+      <Box sx={{ p: 2, borderRadius:'5px', border: `1px solid ${windBorderValueColor}`,margin:'25px 25px 25px 0px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
       {/* <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Wind
             </Typography> */}

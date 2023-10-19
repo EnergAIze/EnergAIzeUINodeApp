@@ -48,7 +48,7 @@ export default function Report(props) {
     }
   }));
 
-  return !!predictData && (
+  return !!predictData?.forecast && (
     <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',textAlign:'left' }}>
 
     <Grid container xs={12} >
