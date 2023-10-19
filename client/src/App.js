@@ -35,6 +35,10 @@ function ColoredComponent({ color }) {
 function App() {
 
   const [predictData, setPredictData] = React.useState({});
+  const [avgConsmptn, setavgConsmptn] = useState('');
+  const [landArea, setlandArea] = useState('');
+
+
   console.log(" In App predictData: ",predictData);
 
   const savePredictData = (data) => {
@@ -69,7 +73,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
 
-        <PredictContext.Provider value={{predictData, setPredictData}} >
+        <PredictContext.Provider value={{predictData, setPredictData,avgConsmptn, setavgConsmptn, landArea, setlandArea}} >
           <AppHeader/>
           
           <InputForm />

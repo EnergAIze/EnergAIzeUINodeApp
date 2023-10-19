@@ -27,7 +27,7 @@ const chartSetting = {
 };
 
 export default function SimpleBarChart(props) {
-  const uData = props.data;
+  const uData = props.data.values;
   return !!props.data && (
     <BarChart
       height={300}

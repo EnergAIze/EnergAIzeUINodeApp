@@ -12,16 +12,17 @@ import {PredictContext} from "./context";
 
 export default function InputForm(props) {
 
-  const { predictData, setPredictData } = useContext(PredictContext);
-
+  const { predictData, setPredictData,avgConsmptn, setavgConsmptn,landArea, setlandArea } = useContext(PredictContext);
+  // setPredictData(data);
+  // console.log("data",data)
   const [disabled, setDisabled] =  useState(true);
 
   const [loader, setLoader] =  useState(false);
 
   const [lat, setLat] = useState();
   const [long, setlong] = useState();
-  const [avgConsmptn, setavgConsmptn] = useState('');
-  const [landArea, setlandArea] = useState('');
+  // const [avgConsmptn, setavgConsmptn] = useState('');
+  // const [landArea, setlandArea] = useState('');
 
 
   const latChangeHandler = (event) => {
@@ -77,7 +78,7 @@ export default function InputForm(props) {
           
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel required>Avg Daily Consumption (in Watt)</FormLabel></div>
+          <div><FormLabel required>Avg consumption (in Watt per 15 days)</FormLabel></div>
           
         </Grid>        
         <Grid item xs={2} sx={{textAlign: "left"}}>
