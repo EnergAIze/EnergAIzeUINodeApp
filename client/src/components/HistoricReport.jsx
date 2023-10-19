@@ -13,10 +13,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
-export default function Report(props) {
+export default function HistoricReport(props) {
    const {predictData,landArea,avgConsmptn} = useContext(PredictContext);
 
   const header = ['Day', 'Power Consumption (in Watt)']
+
 
   const rows = [
     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
@@ -46,34 +47,36 @@ export default function Report(props) {
     }
   }));
 
+  let solorValueColor = '#4E4E4E';
+  let windValueColor = '#4E4E4E';
+  if( predictData?.historical?.solar_avg * landArea >= predictData?.historical?.wind_avg * Math.floor(landArea/16000) )
+    solorValueColor = '#4caf50'
+  else 
+    windValueColor = '#4caf50'
+
   return !!predictData && (
     <Grid container xs={12} >
-    { predictData?.forecast?.solar_avg ? (<Grid container xs={12} >
+    { predictData?.historical?.solar_avg ? (<Grid container xs={12} >
             <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
             <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Solar
             </Typography>
         <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Total Forecasted Power Generation (15 Days): <strong>{(predictData?.forecast?.solar_avg ).toFixed(2)} W/m2</strong>
+      Average Historical Power Generation (3 Years): <strong style={{color:solorValueColor}}>{(predictData?.historical?.solar_avg * landArea).toFixed(2)} W</strong>
       </Typography>
 
-      <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Deficit/Surplus: <strong style={{fontSize:'700'}}>{(predictData?.forecast?.solar_avg * landArea - avgConsmptn).toFixed(2)} W</strong>
-      </Typography>
 
     </Box></Grid>) : '' }
 
-    { predictData?.forecast?.wind_avg ? (<Grid container xs={12} >
+    { predictData?.historical?.wind_avg ? (<Grid container xs={12} >
       <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px 25px 25px 25px',background:' #F6F9FC 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
       <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Wind
             </Typography>
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Total Forecasted Power Generation (15 Days): <strong>{(predictData?.forecast?.wind_avg).toFixed(2)} W</strong>
+      Average Historical Power Generation (3 Years): <strong style={{color:windValueColor}}>{(predictData?.historical?.wind_avg * Math.floor(landArea/16000)).toFixed(2)} W</strong>
       </Typography>
-      <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Deficit/Surplus: <strong>{(predictData?.forecast?.wind_avg - avgConsmptn).toFixed(2)} W</strong>
-      </Typography>
+
       </Box></Grid>) : '' }
 
 {/*     
@@ -81,13 +84,13 @@ export default function Report(props) {
     <div style={{marginLeft:'25px',marginRight:'25px'}}>
     { predictData?.solar?.avg ? (<Grid container xs={12} >
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Total Forecasted Solar Power Generated (15 Days): <strong>{predictData?.wind?.avg * landArea}</strong>
+      Total historicaled Solar Power Generated (15 Days): <strong>{predictData?.wind?.avg * landArea}</strong>
       </Typography>
     </Grid>) : '' }
 
     { predictData?.wind?.avg ? (<Grid container xs={12} >
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Total Forecasted Wind Power Generated (15 Days): <strong>{predictData?.wind?.avg * landArea}</strong>
+      Total historicaled Wind Power Generated (15 Days): <strong>{predictData?.wind?.avg * landArea}</strong>
       </Typography>
     </Grid>) : '' }
 

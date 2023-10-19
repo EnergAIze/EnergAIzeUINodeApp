@@ -11,6 +11,7 @@ import {orange} from '@mui/material/colors';
 import AppHeader from "./components/AppHeader";
 import InputForm from "./components/InputForm";
 import PredictCharts from "./components/PredictCharts";
+import HistoricReport from "./components/HistoricReport";
 import Report from "./components/Report";
 import {PredictContext} from "./components/context";
 // import "@fontsource/roboto";
@@ -77,6 +78,7 @@ function App() {
           <AppHeader/>
           
           <InputForm />
+          <HistoricReport/>
 
           <PredictCharts/>
 

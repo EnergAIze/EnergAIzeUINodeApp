@@ -10,24 +10,27 @@ for(let i=1;i<=15;i++){
   xLabels.push(`Day ${i} `)
 }
 
-const chartSetting = {
-  yAxis: [
-    {
-      label: 'Watts',
-    },
-  ],
-  sx: {
-    [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: 'translate(-10px, 0)',
-    },
-    [`.MuiChartsAxis-bottom .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel.MuiChartsAxis-tickLabel`]: {
-      transform: 'rotate(-19deg)'
-    }
-  },
-};
+
 
 export default function SimpleBarChart(props) {
-  const uData = props.data.values;
+
+  const chartSetting = {
+    yAxis: [
+      {
+        label: props.label,
+      },
+    ],
+    sx: {
+      [`.${axisClasses.left} .${axisClasses.label}`]: {
+        transform: 'translate(-10px, 0)',
+      },
+      [`.MuiChartsAxis-bottom .MuiChartsAxis-tickContainer .MuiChartsAxis-tickLabel.MuiChartsAxis-tickLabel`]: {
+        transform: 'rotate(-19deg)'
+      }
+    },
+  };
+  
+  const uData = props.data;
   return !!props.data && (
     <BarChart
       height={300}

@@ -9,10 +9,31 @@ import CircularProgress from '@mui/material/CircularProgress';
 import data from './mock'
 // import { useContext } from 'react';
 import {PredictContext} from "./context";
+import Alert from '@mui/material/Alert';
 
 export default function InputForm(props) {
 
   const { predictData, setPredictData,avgConsmptn, setavgConsmptn,landArea, setlandArea } = useContext(PredictContext);
+  
+  
+  const formatData = (inputArr,days) =>{
+    // console.log(data.values[0]);
+    let values = inputArr.map(item => item );
+    //console.log(returnVal['values']);
+    let avg = values.reduce((total,num) => total+num ) / days;
+    return avg;
+
+  }
+
+
+  // data.forecast['solar_avg'] = formatData(data.forecast.solar,15)
+  // data.forecast['wind_avg'] = formatData(data.forecast.wind,15)
+
+
+  // data.historical['solar_avg'] = formatData(data.historical.solar,3)
+  // data.historical['wind_avg'] = formatData(data.historical.wind,3)
+
+  
   // setPredictData(data);
   // console.log("data",data)
   const [disabled, setDisabled] =  useState(true);
@@ -21,10 +42,12 @@ export default function InputForm(props) {
 
   const [lat, setLat] = useState();
   const [long, setlong] = useState();
+
+  const [showErrorMsg, setError] = useState(false);
   // const [avgConsmptn, setavgConsmptn] = useState('');
   // const [landArea, setlandArea] = useState('');
 
-
+    
   const latChangeHandler = (event) => {
     setLat(event.target.value);
   }
@@ -46,22 +69,38 @@ export default function InputForm(props) {
       setDisabled(false);
   },[lat,long,avgConsmptn,landArea])
   const clickHandler = () =>{
+    setError(false)
     setLoader(true);
-    fetch('/api/predict', {
-      method: 'POST',
+    fetch(`http://127.0.0.1:5000/api/predict?latitude=${lat}&longitude=${long}&area=${landArea}`, {
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        lat: lat,
-        long: long,
-      })
+      // body: JSON.stringify({
+      //   lat: lat,
+      //   long: long,
+      // })
     }).
     then(response => response.json())
     .then(res => {
-      setPredictData(res);
+      
+      const predictResp = res;
+      predictResp.forecast['solar_avg'] = formatData(predictResp.forecast.solar,15)
+      predictResp.forecast['wind_avg'] = formatData(predictResp.forecast.wind,15)
+    
+    
+      predictResp.historical['solar_avg'] = formatData(predictResp.historical.solar,3)
+      predictResp.historical['wind_avg'] = formatData(predictResp.historical.wind,3)
+
+      
+      setPredictData(predictResp);
       setLoader(false);
+    },
+    err => {
+     console.log(err);
+     setLoader(false);
+     setError(true);
     });
     // setPredictData(res);
   }
@@ -120,7 +159,8 @@ export default function InputForm(props) {
           Search</Button></div>
         </Grid>
         <Grid item xs={2} sx={{textAlign:'left'}}>
-          {loader ? <CircularProgress/> :<div> &nbsp; </div> }
+          {loader ? <CircularProgress/> : showErrorMsg ? <Alert severity="error">Error: Please Try Again Later!</Alert> : <div> &nbsp; </div> }
+          
         </Grid>
      </Grid>
     </Box>
