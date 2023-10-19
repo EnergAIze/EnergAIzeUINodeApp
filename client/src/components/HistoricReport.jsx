@@ -49,7 +49,7 @@ export default function HistoricReport(props) {
 
   let solorValueColor = '#4E4E4E';
   let windValueColor = '#4E4E4E';
-  if( predictData?.historical?.solar_avg * landArea >= predictData?.historical?.wind_avg * Math.floor(landArea/16000) )
+  if( predictData?.historical?.solar_avg >= predictData?.historical?.wind_avg  )
     solorValueColor = '#4caf50'
   else 
     windValueColor = '#4caf50'
@@ -62,7 +62,7 @@ export default function HistoricReport(props) {
             Solar
             </Typography>
         <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Average Historical Power Generation (3 Years): <strong style={{color:solorValueColor}}>{(predictData?.historical?.solar_avg * landArea).toFixed(2)} W</strong>
+      Average Historical Power Generation (3 Years): <strong style={{color:solorValueColor}}>{(predictData?.historical?.solar_avg).toFixed(2)} W</strong>
       </Typography>
 
 
@@ -74,7 +74,7 @@ export default function HistoricReport(props) {
             Wind
             </Typography>
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Average Historical Power Generation (3 Years): <strong style={{color:windValueColor}}>{(predictData?.historical?.wind_avg * Math.floor(landArea/16000)).toFixed(2)} W</strong>
+      Average Historical Power Generation (3 Years): <strong style={{color:windValueColor}}>{(predictData?.historical?.wind_avg ).toFixed(2)} W</strong>
       </Typography>
 
       </Box></Grid>) : '' }

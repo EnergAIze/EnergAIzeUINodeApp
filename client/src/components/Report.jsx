@@ -58,7 +58,7 @@ export default function Report(props) {
       </Typography>
 
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Deficit/Surplus: <strong style={{fontSize:'700'}}>{(predictData?.forecast?.solar_avg * landArea - avgConsmptn).toFixed(2)} W</strong>
+      Deficit/Surplus: <strong style={{fontSize:'700'}}>{(predictData?.forecast?.solar_avg  - avgConsmptn).toFixed(2)} W</strong>
       </Typography>
 
     </Box></Grid>) : '' }

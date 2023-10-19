@@ -71,16 +71,12 @@ export default function InputForm(props) {
   const clickHandler = () =>{
     setError(false)
     setLoader(true);
-    fetch(`http://127.0.0.1:5000/api/predict?latitude=${lat}&longitude=${long}&area=${landArea}`, {
+    fetch(`http://127.0.0.1:5100/api/predict?latitude=${lat}&longitude=${long}&area=${landArea}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      // body: JSON.stringify({
-      //   lat: lat,
-      //   long: long,
-      // })
     }).
     then(response => response.json())
     .then(res => {
