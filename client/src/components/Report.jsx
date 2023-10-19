@@ -12,6 +12,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import InfoIcon from '@mui/icons-material/Info';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function Report(props) {
    const {predictData,landArea,avgConsmptn} = useContext(PredictContext);
@@ -47,9 +49,11 @@ export default function Report(props) {
   }));
 
   return !!predictData && (
+    <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',textAlign:'left' }}>
+
     <Grid container xs={12} >
-    { predictData?.forecast?.solar_avg ? (<Grid container xs={12} >
-            <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
+    { predictData?.forecast?.solar_avg ? (<Grid container xs={6} >
+            <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
             <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Solar
             </Typography>
@@ -58,13 +62,16 @@ export default function Report(props) {
       </Typography>
 
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Deficit/Surplus: <strong style={{fontSize:'700'}}>{(predictData?.forecast?.solar_avg  - avgConsmptn).toFixed(2)} W</strong>
+      Deficit/Surplus
+      <Tooltip title="Deficit/Surplus shows the difference of Avg consumption (approx.) and Avg forecasted generation for 15 days">
+            <InfoIcon style={{width:'0.8em',height:'0.8em'}}/>
+            </Tooltip>: <strong style={{fontSize:'700'}}>{(predictData?.forecast?.solar_avg  - avgConsmptn).toFixed(2)} W</strong>
       </Typography>
 
     </Box></Grid>) : '' }
 
-    { predictData?.forecast?.wind_avg ? (<Grid container xs={12} >
-      <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px 25px 25px 25px',background:' #F6F9FC 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
+    { predictData?.forecast?.wind_avg ? (<Grid container xs={6} >
+      <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px 25px 25px 25px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
       <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Wind
             </Typography>
@@ -72,7 +79,10 @@ export default function Report(props) {
       Total Forecasted Power Generation (15 Days): <strong>{(predictData?.forecast?.wind_avg).toFixed(2)} W</strong>
       </Typography>
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Deficit/Surplus: <strong>{(predictData?.forecast?.wind_avg - avgConsmptn).toFixed(2)} W</strong>
+      Deficit/Surplus
+      <Tooltip title="Deficit/Surplus shows the difference of Avg consumption (approx.) and Avg forecasted generation for 15 days">
+            <InfoIcon style={{width:'0.8em',height:'0.8em'}}/>
+            </Tooltip>: <strong>{(predictData?.forecast?.wind_avg - avgConsmptn).toFixed(2)} W</strong>
       </Typography>
       </Box></Grid>) : '' }
 
@@ -126,7 +136,7 @@ export default function Report(props) {
     </TableContainer>) : '' } */}
 
 
-    </Grid>
+    </Grid></Box>
   );
 }
 

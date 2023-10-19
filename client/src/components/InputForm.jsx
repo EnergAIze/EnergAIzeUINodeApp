@@ -113,7 +113,7 @@ export default function InputForm(props) {
           
         </Grid>
         <Grid item xs={2} sx={{textAlign: "left"}}>
-          <div><FormLabel required>Avg consumption (in Watt per 15 days)</FormLabel></div>
+          <div><FormLabel required>Avg consumption (approx. in Watt per 15 days)</FormLabel></div>
           
         </Grid>        
         <Grid item xs={2} sx={{textAlign: "left"}}>

@@ -12,6 +12,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import InfoIcon from '@mui/icons-material/Info';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function HistoricReport(props) {
    const {predictData,landArea,avgConsmptn} = useContext(PredictContext);
@@ -55,26 +57,33 @@ export default function HistoricReport(props) {
     windValueColor = '#4caf50'
 
   return !!predictData && (
+    <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',textAlign:'left' }}>
     <Grid container xs={12} >
-    { predictData?.historical?.solar_avg ? (<Grid container xs={12} >
-            <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #F6F9FC 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
-            <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
+            
+    { predictData?.historical?.solar_avg ? (<Grid container xs={6} >
+            <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
+            {/* <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Solar
-            </Typography>
+            </Typography> */}
         <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Average Historical Power Generation (3 Years): <strong style={{color:solorValueColor}}>{(predictData?.historical?.solar_avg).toFixed(2)} W</strong>
+      Average Historical Solar Power Generation (3 Years)
+      <Tooltip title="Solar power generation prediction based on historical Data for last 3 years">
+        <InfoIcon style={{width:'0.8em',height:'0.8em'}}/>
+        </Tooltip>: 
+      <strong style={{color:solorValueColor}}> {(predictData?.historical?.solar_avg).toFixed(2)} W</strong>
       </Typography>
 
 
     </Box></Grid>) : '' }
 
-    { predictData?.historical?.wind_avg ? (<Grid container xs={12} >
-      <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px 25px 25px 25px',background:' #F6F9FC 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
-      <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
+    { predictData?.historical?.wind_avg ? (<Grid container xs={6} >
+      <Box sx={{ p: 2, borderRadius:'5px', border: '1px solid #DDE5ED',margin:'25px 25px 25px 0px',background:' #FFFFFF 0% 0% no-repeat padding-box',width:'100%',textAlign:'left' }}>
+      {/* <Typography sx={{ textAlign:'left',color:'#4E4E4E',fontSize:'18px',marginBottom:'25px'}}>
             Wind
-            </Typography>
+            </Typography> */}
       <Typography variant="h5"  sx={{color:'#4E4E4E'}}>
-      Average Historical Power Generation (3 Years): <strong style={{color:windValueColor}}>{(predictData?.historical?.wind_avg ).toFixed(2)} W</strong>
+      Average Historical Wind Power Generation (3 Years)<Tooltip title="Wind power generation prediction based on historical Data for last 3 years"><InfoIcon/></Tooltip>:
+      <strong style={{color:windValueColor}}> {(predictData?.historical?.wind_avg ).toFixed(2)} W</strong>
       </Typography>
 
       </Box></Grid>) : '' }
@@ -128,8 +137,8 @@ export default function HistoricReport(props) {
       </Table>
     </TableContainer>) : '' } */}
 
-
-    </Grid>
+    
+    </Grid></Box>
   );
 }
 

@@ -6,19 +6,22 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
-
+import energaize_logo from '../images/energaize_logo.jpg';
 export default function AppHeader() {
   return (
     <Box sx={{ flexGrow: 1 , boxShadow: "3px 3px 3px #DDE5ED"}}>
       <AppBar position="static" color="transparent" sx={{boxShadow: "3px 3px 3px #DDE5ED"}} >
         <Toolbar variant="dense">
-        <Typography variant="h5" sx={{
-          fontSize: '14px',
+        <img
+        style={{width:'100px'}}
+        src={energaize_logo}
+        />
+
+        <Typography variant="h4" sx={{
           color: '#204464',
           fontWeight: 'bold',
-          height:'17px'
         }}>
-          Power Generation Prediction
+          energAIze
         </Typography>
         </Toolbar>
       </AppBar>
